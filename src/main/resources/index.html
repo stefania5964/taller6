@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+          background-color: #f4f4f4;
+        }
+
+        h1 {
+          background-color: #333;
+          color: #fff;
+          padding: 20px;
+        }
+
+        form {
+          max-width: 300px;
+          margin: 0 auto;
+          padding: 20px;
+          background: #fff;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+          display: block;
+          margin: 10px 0;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+          width: 100%;
+          padding: 6px;
+          margin: 5px 0;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+        }
+
+        input[type="button"] {
+          background: #333;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+          background: #555;
+        }
+
+        #postrespmsg {
+          margin: 20px 0;
+        }
+      </style>
+</head>
+<body>
+<h1>Login</h1>
+<form action="/login">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" autocomplete="off"><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+
+    <input type="button" value="Submit" onclick="loadPostMsg(username, password)">
+</form>
+
+<div id="postrespmsg"></div>
+
+<script>
+      function loadPostMsg(username, password) {
+        let url = "/login?username=" + username.value + "&password=" + password.value;
+
+        fetch(url, { method: 'POST' })
+          .then(x => x.text())
+          .then(y => document.getElementById("postrespmsg").innerHTML = y);
+      }
+    </script>
+</body>
+</html>
