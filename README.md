@@ -66,7 +66,10 @@ cremos el segundo servidor habilitando el nuevo puerto.
 ![](src/img/12.png)
 Enviamos los programas con SCP a los servidores y los corremos con ```java -cp``` y listo.
 
-
+```
+sudo docker run -d -p 5000:5000 -e KT=keystore/ecikeystore.p12 -e KS=keystore/ecikeystore.p12 -e DNS=https://34.229.159.172:5002/hello --name secure-server stefania5964/taller6
+sudo docker run -d -p 5002:5002 -e KT=keystore/eci.p12 -e KS=keystore/eci.p12 -e DNS=https://54.159.112.210:5000/hello -e PORT=5050 --name secure-server stefania5964/taller6
+```
 
 ## **Implementación login**
 
